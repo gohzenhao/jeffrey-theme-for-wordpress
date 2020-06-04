@@ -67,6 +67,51 @@ function my_sidebars()
             'after_title' => '</h4>',
         )
     );
+
+    register_sidebar(
+        array(
+            'name' => 'Video',
+            'id' => 'frontpage-video',
+            'before-title' => '<h4 class="widget-title">',
+            'after_title' => '</h4>',
+        )
+    );
+
+    register_sidebar(
+        array(
+            'name' => 'Product Categories Dropdown',
+            'id' => 'product-categories',
+            'before-title' => '<h4 class="widget-title">',
+            'after_title' => '</h4>',
+        )
+        );
+
+    register_sidebar(
+        array(
+            'name' => 'Cart Sidebar',
+            'id' => 'cart-sidebar',
+            'before-title' => '<h4 class="widget-title">',
+            'after-title' => '</h4>',
+            )
+        );
+
+    register_sidebar(
+        array(
+            'name' => 'Woocommerce Search Bar',
+            'id' => 'woocommerce-search-bar',
+            'before-title' => '<h4 class="widget-title">',
+            'after-title' => '</h4>',
+        )
+    );
+
+    register_sidebar(
+        array(
+            'name' => 'Product Filters',
+            'id' => 'product-filters',
+            'before-title' => '<h4 class="widget-title">',
+            'after-title' => '</h4>',
+        )
+    );
 }
 
 add_action('widgets_init', 'my_sidebars');
@@ -104,4 +149,18 @@ function my_first_taxonomy()
 }
 
 add_action('init', 'my_first_taxonomy');
+
+
+function mytheme_add_woocommerce_support() {
+    add_theme_support('woocommerce');
+}
+
+add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
+
+add_filter('loop_shop_columns', 'loop_columns', 999);
+if (!function_exists('loop_columns')) {
+	function loop_columns() {
+		return 3; // 3 products per row
+	}
+}
 ?>
